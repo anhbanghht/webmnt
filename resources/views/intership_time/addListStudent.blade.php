@@ -1,0 +1,168 @@
+@extends('layouts.default')
+
+@section('content')
+<section>
+	<div class="section-body contain-lg">
+    	<div class="row">
+           <div class="col-md-12">
+        		<form class="form" method="post">
+        		    {{ csrf_field() }}
+        			<div class="card card-underline">
+					    <div class="card-head card-head-lg">
+							<header>Thêm danh sách sinh viên trong đợt thực tập <span style="color: #311B92;font-weight: bold;">
+								<select name="intertime_id" id="intertime_id" onchange="window.location.href=this.value">
+		    				        @foreach( $intership_time as $opt )
+		    				        <option value="{{route('intership_time::addListStudent',['id'=>$opt->id])}}" @if($opt->id == $intertime_id) selected @endif >{{$opt->intertime_name}}</option>
+		    				        @endforeach
+		    				    </select></span>
+							</header>
+							<div class="tools">
+								<div class="btn-group">
+								    @if( \Auth::user()->has_permission( 'intership_time::listStudent' ) )
+		        				        <a href="{{route('intership_time::listStudent',['intertime_id'=>$intertime_id])}}" class="btn btn-icon-toggle btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="Danh sách sinh viên tham gia đợt thực tập"><span class="md md-format-list-bulleted"></span></a>
+		        				    @endif
+									<a class="btn btn-icon-toggle btn-primary" href="{{ URL::previous() }}"  data-toggle="tooltip" data-placement="top" data-original-title="Trở lại"><i class="fa fa-undo"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="card-body">
+		                    <div class="table-responsive">
+								<table id="datatable1" class="table no-margin datatable">
+									<thead>
+										<tr>
+											<th class="hidden"></th>
+											<th>Mã sinh viên</th>
+											<th>Tên sinh viên</th>
+											<th>Ngày sinh</th>
+											<th>Lớp</th>
+											<th>Khóa</th>
+											<th>Ngành</th>
+										</tr>
+									</thead>
+									<tbody>
+									    @foreach( $students as $item )
+									    <tr data-id="{{$item->id}}"	class="@if( in_array( $item->id, $students_selected->pluck('student_id')->toArray() ) ) disabled pre @endif">
+									    	<td class="hidden"><input type="checkbox" name="ids[]" class="ids" value="{{$item->id}}" /></td>
+											<td>{{$item->student_id}}</td>
+											<td>{{$item->student_name}}</td>
+											<td>{{$item->birth}}</td>
+											<td>{{$item->class_name}}</td>
+											<td>{{$item->courses->course}}</td>
+											<td>@if($item->department){{$item->department->department_name}}@endif</td>
+										</tr>
+									    @endforeach
+									</tbody>
+								</table>
+							</div><!--end .table-responsive -->
+						</div>
+						<div class="card-actionbar">
+		        			<div class="card-actionbar-row">
+		        				<button class="btn ink-reaction btn-primary" id="add_to_list">Thêm vào danh sách</button>
+		        			</div>
+		        		</div>
+					</div>
+    		</div>
+        </div>
+    	<div class="row">
+           <div class="col-md-12">
+        		<form class="form" method="post">
+        		    {{ csrf_field() }}
+        			<div class="card card-underline">
+					    <div class="card-head card-head-lg">
+							<header>Danh sách sinh viên được thêm</header>
+						</div>
+				<div class="card-body">
+                    <div class="table-responsive">
+						<table id="tableResult" class="table no-margin datatable">
+							<thead>
+								<tr>
+									<th>Mã sinh viên</th>
+									<th>Tên sinh viên</th>
+									<th>Ngày sinh</th>
+									<th>Lớp</th>
+									<th>Khóa</th>
+									<th>Ngành</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($students_selected as $item)
+							    <tr data-id="9" class="odd" role="row">
+							    	<td class="hidden"><input type="checkbox" name="ids[]" class="ids" value="{{$item->student->student_id}}" ></td>
+									<td>{{$item->student->student_id}}</td>
+									<td>{{$item->student->student_name}}</td>
+									<td>{{$item->student->birth}}</td>
+									<td>{{$item->student->class_name}}</td>
+									<td>{{$item->student->courses->course}}</td>
+									<td>@if($item->student->department){{$item->student->department->department_name}}@endif</td>
+								</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</div><!--end .table-responsive -->
+				</div>
+			    <div class="card-actionbar">
+        			<div class="card-actionbar-row">
+        				<button class="btn ink-reaction btn-primary" id="add_to_list">Cập nhật danh sách</button>
+        			</div>
+        		</div>
+        		</form>
+    		</div>
+        </div>
+	</div>
+</section>
+@stop
+@section('addtional-css')
+<link type="text/css" rel="stylesheet" href="{{ asset('public/assets/css/theme-default/libs/DataTables/jquery.dataTables.css')}}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('public/assets/css/theme-default/libs/DataTables/extensions/dataTables.colVis.css')}}" />
+<link type="text/css" rel="stylesheet" href="{{ asset('public/assets/css/theme-default/libs/DataTables/extensions/dataTables.tableTools.css')}}" />
+@stop
+@section('addtional-js')
+<script src="{{ asset('public/assets/js/libs/DataTables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('public/assets/js/libs/DataTables/extensions/ColVis/js/dataTables.colVis.min.js')}}"></script>
+<script src="{{ asset('public/assets/js/libs/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js')}}"></script>
+<script>
+    (function($){
+        $('#datatable1').DataTable({
+			"dom": 'lCfrtip',
+			"order": [],
+			"colVis": {
+				"buttonText": "Columns",
+				"overlayFade": 0,
+				"align": "right"
+			},
+			"language": {
+				"lengthMenu": '_MENU_ entries per page',
+				"search": '<i class="fa fa-search"></i>',
+				"paginate": {
+					"previous": '<i class="fa fa-angle-left"></i>',
+					"next": '<i class="fa fa-angle-right"></i>'
+				}
+			}
+		});
+
+		
+		$('#datatable1 tbody').on('click', 'tr:not(.disabled)', function() {
+			$(this).toggleClass('selected');
+			if( $(this).hasClass('selected') )
+				$(this).find('.ids').prop('checked',true);
+			else
+				$(this).find('.ids').prop('checked',false);
+		});
+		
+		$('#add_to_list').on('click', function(e){
+			e.preventDefault();
+			$('#datatable1 tbody tr.selected').each(function(key,item){
+				$(item).removeClass('selected');
+				var newrow = $(item).clone();
+				$(item).addClass('disabled');
+				$(item).click(function(e){
+					e.preventDefault();
+					return false;
+				});
+				$('#tableResult tbody').append(newrow);
+				
+			});
+		});
+    })(jQuery);
+</script>
+@stop

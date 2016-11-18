@@ -1,0 +1,150 @@
+.add-table{
+	margin:15px;
+}
+#add{
+    padding: 60px;
+    background:  url('../../assets/img/add.png') no-repeat center;
+    background-size: 40px;
+    color:#5DA911;
+    border: none;
+    text-align: center;
+	margin:20px;
+}
+.add-table a#add:hover{
+    background: url('../../assets/img/add1.png') no-repeat center;
+    background-size: 50px;
+}
+
+.add-table a#approve{
+    padding: 60px;
+    background:  url('../../assets/img/approve.png') no-repeat center;
+    background-size: 40px;
+    color:#FFF;
+    border: none;
+    text-align: center;
+	margin:20px;
+}
+.add-table a#approve:hover{
+    background: url('../../assets/img/approve.png') no-repeat center;
+    background-size: 50px;
+}
+
+.card-actionbar .card-actionbar-row #save{
+	width:auto;
+    height:auto;
+    padding:25px 30px;
+    background: url('../../assets/img/Save.png') no-repeat center;
+    background-size: 40px;
+    border: none;
+    margin: 5px 10px 10px 30px;
+}
+.send-mail-this a#send-mail{
+	width:auto;
+    height:auto;
+    padding:25px 30px;
+    background: url('../../assets/img/send_letter-128.png') no-repeat center;
+    background-size: 45px;
+    border: none;
+}
+.send-mail-this a#send-mail-setting{
+	width:auto;
+    height:auto;
+    padding:25px 30px;
+    background: url('../../assets/img/mail-settings-128.png') no-repeat center;
+    background-size: 45px;
+    border: none;
+}
+.card-actionbar .card-actionbar-row #save:hover{
+    width:auto;
+    height:auto;
+    padding:25px 30px;
+    background: url('../../assets/img/Save.png') no-repeat center;
+    background-size: 45px;
+    border: none;
+}
+.card-actionbar .card-actionbar-row a#cancel{
+    float: right;
+    width: auto;
+    height: auto;
+    padding: 25px 30px;
+    background: url('../../assets/img/cancel.png') no-repeat center;
+    background-size: 40px;
+    border: none;
+    margin: 5px 10px 10px 30px;
+}
+
+.card-actionbar .card-actionbar-row a#cancel:hover{
+    float: right;
+    width: auto;
+    height: auto;
+    padding: 25px 30px;
+    background: url('../../assets/img/cancel.png') no-repeat center;
+    background-size: 45px;
+    border: none;
+}
+
+.card .card-body .err{
+	width:100%;
+	color:red;
+	padding:5px;
+}
+.assigns-table > thead > tr > th,.assigns-table > tbody > tr > th,.assigns-table > tfoot > tr > th,.assigns-table > thead > tr > td,.assigns-table > tbody > tr > td,.assigns-table > tfoot > tr > td{
+	vertical-align:middle;
+	min-width:50px;
+}
+.assigns-table > thead > tr > th:first-child,.assigns-table > tbody > tr > th:first-child,.assigns-table > tfoot > tr > th:first-child,.assigns-table > thead > tr > td:first-child,.assigns-table > tbody > tr > td:first-child,.assigns-table > tfoot > tr > td:first-child{
+	min-width:10px;
+}
+.assigns-table > thead > tr > th:nth-child(2),.assigns-table > tbody > tr > th:nth-child(2),.assigns-table > tfoot > tr > th:nth-child(2),.assigns-table > thead > tr > td:nth-child(2),.assigns-table > tbody > tr > td:nth-child(2),.assigns-table > tfoot > tr > td:nth-child(2){
+	min-width:200px;
+}
+.assigns-table > thead > tr > th:nth-child(4),.assigns-table > tbody > tr > th:nth-child(4),.assigns-table > tfoot > tr > th:nth-child(4),.assigns-table > thead > tr > td:nth-child(4),.assigns-table > tbody > tr > td:nth-child(4),.assigns-table > tfoot > tr > td:nth-child(4){
+	min-width:200px;
+}
+.assigns-table > thead > tr > th:nth-child(8),.assigns-table > tbody > tr > th:nth-child(8),.assigns-table > tfoot > tr > th:nth-child(8),.assigns-table > thead > tr > td:nth-child(8),.assigns-table > tbody > tr > td:nth-child(8),.assigns-table > tfoot > tr > td:nth-child(8){
+	min-width:100px;
+}
+.assigns-table > thead > tr > th:nth-child(9),.assigns-table > tbody > tr > th:nth-child(9),.assigns-table > tfoot > tr > th:nth-child(9),.assigns-table > thead > tr > td:nth-child(9),.assigns-table > tbody > tr > td:nth-child(9),.assigns-table > tfoot > tr > td:nth-child(9){
+	min-width:100px;
+}
+.assigns-table > thead > tr > th:nth-last-child(2),.assigns-table > tbody > tr > th:nth-last-child(2),.assigns-table > tfoot > tr > th:nth-last-child(2),.assigns-table > thead > tr > td:nth-last-child(2),.assigns-table > tbody > tr > td:nth-last-child(2),.assigns-table > tfoot > tr > td:nth-last-child(2){
+	min-width:200px;
+}
+.assigns-table > thead > tr > th:last-child,.assigns-table > tbody > tr > th:last-child,.assigns-table > tfoot > tr > th:last-child,.assigns-table > thead > tr > td:last-child,.assigns-table > tbody > tr > td:last-child,.assigns-table > tfoot > tr > td:last-child{
+	min-width:100px;
+}
+.assigns-table a#add-task{
+	background:url('../../assets/img/add_icon.png') center no-repeat;
+	background-size:20px;
+	padding:13px;
+}
+
+.assigns-table a#app-task{
+	background:url('../../assets/img/app_icon.png') center no-repeat;
+	background-size:20px;
+	padding:9px;
+}
+
+.assigns-table a#del-task{
+	background:url('../../assets/img/del_icon.png') center no-repeat;
+	background-size:20px;
+	padding:13px;
+}
+a#edit_this_task{
+	padding:10px;
+}
+
+.view-modal-task-edit h4 {
+	color: blue;
+	text-align: center;
+}
+.view-modal-task-edit .task-save{
+    float: left;
+}
+span#span-ajax-loader{
+    width:100%;
+    background:url('../../assets/img/ajax-loader.gif') center no-repeat;
+	background-size:16px;
+	padding:0 50%;
+	text-align:center;
+}
